@@ -8,6 +8,11 @@ package com.andy.sparsearray;
  */
 public class SparseArray {
 
+    public static void main(String[] args) {
 
+        int i = 100;
+        int j = 9;
+        System.out.println(j+(j=i--));
+    }
 
 }
