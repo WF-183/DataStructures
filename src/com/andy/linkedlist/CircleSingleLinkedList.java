@@ -57,7 +57,7 @@ public class CircleSingleLinkedList {
         Node temp = first;
         while (true){
             //输出
-            System.out.printf("当前节点 %d \n" , temp.getId());
+            System.out.printf("当前节点 %d \n" , temp.id);
             //结束条件
             if(temp.next == first){
                 break;
@@ -109,7 +109,7 @@ public class CircleSingleLinkedList {
         while (true){
             //循环结束条件 还剩一个节点
             if(temp.next == temp){
-                System.out.printf("出圈完毕，还剩最后一个节点 %d",temp.getId());
+                System.out.printf("出圈完毕，还剩最后一个节点 %d",temp.id);
                 break;
             }
 
@@ -120,7 +120,7 @@ public class CircleSingleLinkedList {
                 helper = helper.next;
             }
             //删除temp节点
-            System.out.printf("该节点被删除 %d \n",temp.getId());
+            System.out.printf("该节点被删除 %d \n",temp.id);
             helper.next = helper.next.next;
             temp = temp.next;
         }
