@@ -11,6 +11,17 @@ import java.util.Random;
  */
 public class BubbleSort {//冒泡排序
 
+    /**
+     *
+     桶排序 0ms> 归并 1ms，借助额外空间，借助的越多就越快，
+     >
+     堆排序 12ms> 快排 20ms ，堆排序不用递归，
+     >
+     希尔 20ms>直接插入 600ms，希尔是对直接插入的改进，
+     >
+     >选择 2s、冒泡 10s ，O(n^2) 最慢
+     * @param args
+     */
     public static void main(String[] args) {
 
         //功能测试
