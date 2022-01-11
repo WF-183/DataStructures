@@ -135,8 +135,9 @@ class TreeNode {
         }
     }
 
-
-
+    public TreeNode(int id) {
+        this.id = id;
+    }
 
     public TreeNode(int id, String name) {
         this.id = id;
