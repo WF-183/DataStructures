@@ -23,6 +23,7 @@ public class GraphByArrTest {//邻接矩阵创建图
         }
         //添加边
         //A-B A-C 、B-C B-A B-D B-E 、C-B C-A、D-B、E-B ，无向图，两个方向留一个就行
+        //默认值0表示不能直接连通
         graphByArr.addEdge(0, 1, 1);
         graphByArr.addEdge(0, 2, 1);
         graphByArr.addEdge(1, 2, 1);
@@ -70,10 +71,48 @@ class GraphByArr {
         return vertexList.size();
     }
 
+
     //获取边数量
     public int countEdge() {
+        int count = 0;
+        for (int i = 0; i < vertexList.size(); i++) {
+            //注意，j = i+1，实现不重复统计效果，A-C、C-A算1条边
+            for (int j = i + 1; j < vertexList.size(); j++) {
+                if (edgeArr[i][j] != 0) {
+                    count++;
+                }
+            }
+        }
+        edgeNum = count;
         return edgeNum;
     }
+
+    //获取所有边对象
+    public Edge[] getAllEdge() {
+        Edge[] result = new Edge[countEdge()];
+        int index = 0;
+        for (int i = 0; i < vertexList.size(); i++) {
+            //注意，j = i+1，实现不重复统计效果，A-C、C-A算1条边
+            for (int j = i + 1; j < vertexList.size(); j++) {
+                if (edgeArr[i][j] != 0) {
+                    result[index++] = new Edge(vertexList.get(i), vertexList.get(j), edgeArr[i][j]);
+                }
+            }
+        }
+        return result;
+    }
+
+    //通过节点值获取其下标
+    //隐含前提：节点间是有先后顺序的，且每个节点有自己下标。A-G就对应节点下标0-6 。
+    public int getIndexByVal(String val) {
+        for (int i = 0; i < vertexList.size(); i++) {
+            if (vertexList.get(i).equals(val)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
 
     //打印邻接矩阵
     public void show() {
@@ -197,4 +236,36 @@ class GraphByArr {
         }
     }
 
+}
+
+
+//边对象
+class Edge {
+
+    private String startVal;
+    private String endVal;
+    private int weight;
+
+    public Edge(String startVal, String endVal, int weight) {
+        this.startVal = startVal;
+        this.endVal = endVal;
+        this.weight = weight;
+    }
+
+    @Override
+    public String toString() {
+        return "Edge{" + "startVal='" + startVal + '\'' + ", endVal='" + endVal + '\'' + ", weight=" + weight + '}';
+    }
+
+    public int getWeight() {
+        return weight;
+    }
+
+    public String getStartVal() {
+        return startVal;
+    }
+
+    public String getEndVal() {
+        return endVal;
+    }
 }
